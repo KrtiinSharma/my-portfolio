@@ -1,9 +1,7 @@
 import {
   IconBrandGithub,
   IconBrandInstagram,
-  IconBrandLeetcode,
   IconBrandLinkedin,
-  IconBrandYoutube,
 } from "@tabler/icons-react";
 import { link } from "fs";
 

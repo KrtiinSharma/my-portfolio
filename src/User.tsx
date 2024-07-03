@@ -1,5 +1,5 @@
 const Info = {
-  name: "Krtiin Sharma",
+  name: "KrtiinSharma",
   stack: [
     "Software Engineer Student",
     "Full Stack Web Developer",

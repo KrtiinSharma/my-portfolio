@@ -76,7 +76,7 @@ const About = () => {
         </div>
         <Button
           component="a"
-          href="https://www.github.com/Code-Mars"
+          href="https://github.com/KrtiinSharma"
           target="_blank"
           className="!text-bgColor !w-fit"
           size="lg"
