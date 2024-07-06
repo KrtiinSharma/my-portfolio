@@ -1,6 +1,7 @@
 import {
   IconBrandGithub,
   IconBrandInstagram,
+  IconBrandLeetcode,
   IconBrandLinkedin,
 } from "@tabler/icons-react";
 import { link } from "fs";
@@ -16,6 +17,10 @@ const Social = () => {
       link: "https://www.instagram.com/krtiin2415",
       icon: IconBrandInstagram,
     },
+    {
+      link: "https://leetcode.com/u/krtiin/",
+      icon: IconBrandLeetcode,
+    },
   ];
   const socialIcons = socialLinks.map((socialLink, index) => {
     return (
@@ -25,7 +30,10 @@ const Social = () => {
         target="_blank"
         className="font-mono text-lg  hover:text-primaryColor hover:-translate-x-2 transition transform duration-300 ease-in-out"
       >
-        <socialLink.icon className="-rotate-90" size={30} />
+        <div data-aos="fade-up-left" data-aos-duration="800">
+          {" "}
+          <socialLink.icon className="-rotate-90" size={30} />
+        </div>
       </a>
     );
   });
