@@ -6,17 +6,31 @@ import {
   Image,
   Indicator,
   Text,
+  useMatches,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import FullProjectModal from "./FullProjectModal";
 const ProjectCard = (props: any) => {
   const [opened, { open, close }] = useDisclosure(false);
+  const badge = useMatches({
+    xsm: "sm",
+    md: "md",
+    lg: "lg",
+  });
+  const btn = useMatches({
+    xs: "xs",
+    sm: "sm",
+    md: "md",
+  });
   return (
-    <div data-aos="fade-up" data-aos-duration="800">
+    <div
+      className="w-[32%] lg-mx:w-[46%] md-mx:w-[48%] sm-mx:w-[90%] xs-mx:w-full"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
       <Card
         onClick={open}
-        className="!bg-bgColor cursor-pointer transition-transform duration-300 ease-in-out hover:!scale-[1.02] mb-5 hover:!shadow-[0_0_10px_1px_#64FFDA80] !border-primaryColor border-2"
-        w="360px"
+        className="!bg-bgColor cursor-pointer transition-transform duration-300 ease-in-out hover:!scale-[1.02] mb-5 hover:!shadow-[0_0_10px_1px_#64FFDA80] xs-mx:!shadow-[0_0_10px_1px_#64FFDA80] !border-primaryColor border-2"
         shadow="lg"
         padding="sm"
         radius="lg"
@@ -31,14 +45,16 @@ const ProjectCard = (props: any) => {
         </Card.Section>
 
         <Group justify="space-between" mt="xs" mb="xs">
-          <div className="!text-2xl gap-2 !font-bold !text-white flex items-center">
+          <div className="!text-2xl gap-2 !font-bold !text-white flex items-center sm-mx:!text-xl">
             {props.title}
             {props.live === true && (
               <Badge
+                className="!px-1"
                 variant="outline"
                 color="red"
                 rightSection={
                   <Indicator
+                    className="!mr-0.5"
                     color="red"
                     position="middle-end"
                     size={7}
@@ -51,24 +67,30 @@ const ProjectCard = (props: any) => {
             )}
           </div>
         </Group>
-        <Group mb="sm">
+        <Group mb="sm" className="!gap-2">
           {props.technologies.map(
             (tech: string, index: number) =>
               index < 3 && (
-                <Badge key={index} size="lg" variant="light" color="#64FFDA">
+                <Badge key={index} size={badge} variant="light" color="#64FFDA">
                   {tech}
                 </Badge>
               )
           )}
         </Group>
-        <Text className="!text-justify" lineClamp={5} size="sm" c="dimmed">
+        <Text
+          className="!text-justify !text-sm xs-mx:!text-xs"
+          lineClamp={5}
+          size="sm"
+          c="dimmed"
+        >
           {props.desc}
         </Text>
 
         <Button
           onClick={open}
-          className="!bg-primaryColor !text-bgColor"
-          fullWidth
+          className=""
+          color="#64FFDA"
+          variant="outline"
           mt="md"
           radius="md"
         >
