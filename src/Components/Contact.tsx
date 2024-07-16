@@ -2,6 +2,10 @@ import { useState } from "react";
 import FloatingInput from "./FloatingInput";
 import { Button, useMatches } from "@mantine/core";
 import { IconArrowRight, IconTopologyStar3 } from "@tabler/icons-react";
+import { validateForm } from "./Validation";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../Firebase";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const form = {
@@ -10,10 +14,33 @@ const Contact = () => {
     phone: "",
     message: "",
   };
-  const [formData, setFormData] = useState(form);
+  const [formData, setFormData] = useState<{ [key: string]: string }>(form);
+  const [formError, setFormError] = useState<{ [key: string]: string }>(form);
+
   const handleChange = (id: string, value: string) => {
     setFormData({ ...formData, [id]: value });
+    setFormError({ ...formError, [id]: validateForm(id, value) });
   };
+  const handleSubmit = async () => {
+    let valid = true;
+    let newFormError: { [key: string]: string } = {};
+    for (let key in formData) {
+      const error = validateForm(key, formData[key]);
+      if (error.length > 0) {
+        newFormError[key] = error;
+        valid = false;
+      }
+    }
+    setFormError(newFormError);
+    if (valid) {
+      setFormData(form);
+      toast.success("Submitted Successfully!", { duration: 4000 });
+      await addDoc(collection(db, "portfolio"), formData);
+    } else {
+      toast.error("Some error occurred!", { duration: 4000 });
+    }
+  };
+
   const btn = useMatches({
     xsm: "xs",
     sm: "sm",
@@ -42,27 +69,32 @@ const Contact = () => {
           name="Name"
           value={formData.name}
           handleChange={handleChange}
+          error={formError.name}
         />
         <FloatingInput
           id="email"
           name="Email"
           value={formData.email}
           handleChange={handleChange}
+          error={formError.email}
         />
         <FloatingInput
           id="phone"
           name="Phone Number"
           value={formData.phone}
           handleChange={handleChange}
+          error={formError.phone}
         />
         <FloatingInput
           id="message"
           name="Message"
           value={formData.message}
           handleChange={handleChange}
+          error={formError.message}
         />
         <Button
           fullWidth
+          onClick={handleSubmit}
           rightSection={<IconArrowRight size={20} />}
           className="!text-bgColor !font-bold "
           variant="filled"

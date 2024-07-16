@@ -1,3 +1,11 @@
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLeetcode,
+  IconBrandLinkedin,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
+
 const Info = {
   name: "KrtiinSharma",
   stack: [
@@ -127,6 +135,20 @@ const SkillInfo = [
   },
 ];
 
+const socialLinks = [
+  { link: "https://github.com/KrtiinSharma", icon: IconBrandGithub },
+  {
+    link: "https://www.linkedin.com/in/krtiin-sharma-4a113626b/",
+    icon: IconBrandLinkedin,
+  },
+  {
+    link: "https://www.youtube.com/channel/UC1ki6jaFvFiH_E79b9FYptw",
+    icon: IconBrandYoutube,
+  },
+  { link: "https://www.instagram.com/krtiin2415", icon: IconBrandInstagram },
+  { link: "https://leetcode.com/u/krtiin/", icon: IconBrandLeetcode },
+];
+
 const ExperienceInfo = [
   {
     role: "System Engineer",
@@ -183,4 +205,4 @@ const Slugs = [
   "sonarqube",
   "figma",
 ];
-export { Info, ProjectInfo, SkillInfo, ExperienceInfo, Slugs };
+export { Info, ProjectInfo, socialLinks, SkillInfo, ExperienceInfo, Slugs };
