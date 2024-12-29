@@ -142,7 +142,7 @@ const socialLinks = [
     icon: IconBrandLinkedin,
   },
   {
-    link: "https://www.youtube.com/channel/UC1ki6jaFvFiH_E79b9FYptw",
+    link: "",
     icon: IconBrandYoutube,
   },
   { link: "https://www.instagram.com/krtiin2415", icon: IconBrandInstagram },
